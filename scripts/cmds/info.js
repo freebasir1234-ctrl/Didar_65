@@ -26,7 +26,7 @@ module.exports = {
 				facebook: 'https://www.facebook.com/rahman.Di4Ar3'
 			};
 
-			const ULLASH = 'https://files.catbox.moe/do2kb3.jpeg';
+			const ULLASH = 'https://files.catbox.moe/l12v8m.jpg';
 			const tmpFolderPath = path.join(__dirname, 'tmp');
 
 			if (!fs.existsSync(tmpFolderPath)) {
