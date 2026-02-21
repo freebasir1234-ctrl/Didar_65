@@ -1,64 +1,62 @@
-const axios = require('axios');
 const fs = require('fs');
-const path = require('path');
+const moment = require('moment-timezone');
 
 module.exports = {
-config: {
-  name: "owner",
-  aurthor:"Tokodori",// Convert By Goatbot Tokodori 
-   role: 0,
-  shortDescription: " ",
-  longDescription: "",
-  category: "admin",
-  guide: "{pn}"
-},
+	config: {
+		name: "info",
+   aliases: ["owner", "botinfo" ],
+		version: "1.0",
+		author: "NTKhang",
+		countDown: 20,
+		role: 0,
+		shortDescription: { vi: "", en: "" },
+		longDescription: { vi: "", en: "" },
+		category: "owner",
+		guide: { en: "" },
+		envConfig: {}
+	},
+	onStart: async function ({ message }) {
+		const authorName = "𝗠𝗿.𝗗𝗶𝗱𝗮𝗿";
+		const ownAge = "19";
+		const messenger = " //https://m.me/100001861740870";
+		const authorFB = " //https://www.facebook.com/rahman.Di4Ar3";
+		const authorNumber = "013********94";
+		const Status = "𝘀𝗶𝗻𝗴𝗹𝗲 ";
+		const urls = [
+"https://drive.google.com/uc?export=download&id=1ZFN18K6yyRarQ7Iaa-DFtRsA-c6WkSZD"
+];
+		const link = urls[Math.floor(Math.random() * urls.length)];
+		const now = moment().tz('Asia/Jakarta');
+		const date = now.format('MMMM Do YYYY');
+		const time = now.format('h:mm:ss A');
+		const uptime = process.uptime();
+		const seconds = Math.floor(uptime % 60);
+		const minutes = Math.floor((uptime / 60) % 60);
+		const hours = Math.floor((uptime / (60 * 60)) % 24);
+		const days = Math.floor(uptime / (60 * 60 * 24));
+		const uptimeString = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
 
-  onStart: async function ({ api, event }) {
-  try {
-    const ownerInfo = {
-      name: 'MAHBUB ULLASH',
-      gender: 'Male',
-      age: '21+',
-      height: 'Unknown',
-      facebookLink: 'https://www.facebook.com/CYBER.ULLASH',
-      nick: 'ULLASH\n\n𝐅𝐨𝐫 𝐦𝐨𝐫𝐞 𝐢𝐧𝐟𝐨𝐫𝐦𝐚𝐭𝐢𝐨𝐧 𝐯𝐢𝐬𝐢𝐭: https://mahbub-ullash.cyberbot.top'
-    };
-
-    const bold = 'https://files.catbox.moe/1dwo7j.mp4'; // Replace with your Google Drive videoid link https://drive.google.com/uc?export=download&id=here put your video id
-
-    const tmpFolderPath = path.join(__dirname, 'tmp');
-
-    if (!fs.existsSync(tmpFolderPath)) {
-      fs.mkdirSync(tmpFolderPath);
-    }
-
-    const videoResponse = await axios.get(bold, { responseType: 'arraybuffer' });
-    const videoPath = path.join(tmpFolderPath, 'owner_video.mp4');
-
-    fs.writeFileSync(videoPath, Buffer.from(videoResponse.data, 'binary'));
-
-    const response = `
-Owner Information:🧾
-Name: ${ownerInfo.name}
-Gender: ${ownerInfo.gender}
-Age: ${ownerInfo.age}
-Height: ${ownerInfo.height}
-Facebook: ${ownerInfo.facebookLink}
-Nick: ${ownerInfo.nick}
-`;
-
-
-    await api.sendMessage({
-      body: response,
-      attachment: fs.createReadStream(videoPath)
-    }, event.threadID, event.messageID);
-
-    if (event.body.toLowerCase().includes('ownerinfo')) {
-      api.setMessageReaction('🚀', event.messageID, (err) => {}, true);
-    }
-  } catch (error) {
-    console.error('Error in ownerinfo command:', error);
-    return api.sendMessage('An error occurred while processing the command.', event.threadID);
-  }
-},
+		message.reply({
+			body: `✨《 𝐁𝐨𝐭 𝐀𝐧𝐝 𝐎𝐰𝐧𝐞𝐫 𝐈𝐧𝐟𝐨𝐫𝐦𝐚𝐭𝐢𝐨𝐧 》🎀
+\🤖彡𝐵𝑜𝑡 𝑁𝑎𝑚𝑒 :  ${global.GoatBot.config.nickNameBot}
+\👾彡𝐵𝑜𝑡 𝑆𝑦𝑠𝑡𝑒𝑚 𝑃𝑟𝑒𝑓𝑖𝑥 : ${global.GoatBot.config.prefix}
+\💙彡𝑂𝑤𝑛𝑒𝑟 𝑁𝑎𝑚𝑒 : ${authorName}
+\📝彡𝐴𝑔𝑒  : ${ownAge}
+\💕彡𝑅𝑒𝑙𝑎𝑡𝑖𝑜𝑛𝑆ℎ𝑖𝑝: ${Status}
+\🌐彡𝑊𝑝 : ${authorNumber}
+\🌍彡𝐹𝑎𝑐𝑒𝑏𝑜𝑜𝑘 𝐿𝑖𝑛𝑘 :  ${authorFB}
+\🗓彡𝐷𝑎𝑡𝑒 : ${date}
+\⏰彡𝑁𝑜𝑤 𝑇𝑖𝑚𝑒 : ${time}
+\🔰彡𝐴𝑛𝑦 𝐻𝑒𝑙𝑝 𝐶𝑜𝑛𝑡𝑎𝑐𝑡 : ${messenger}__⩸
+\📛彡𝐵𝑜𝑡 𝐼𝑠 𝑅𝑢𝑛𝑛𝑖𝑛𝑔 𝐹𝑜𝑟 : ${uptimeString}
+    𝑰𝒏𝒔𝒕𝒂:  //https://www.instagram.com/alvee.didar.12?igsh=anZjZDV0aDMzZmM3&utm_source=qr
+\===============`,
+			attachment: await global.utils.getStreamFromURL(link)
+		});
+	},
+	onChat: async function ({ event, message, getLang }) {
+		if (event.body && event.body.toLowerCase() === "info") {
+			this.onStart({ message });
+		}
+	}
 };
